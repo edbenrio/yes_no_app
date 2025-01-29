@@ -1,3 +1,5 @@
+import 'package:yes_no_app/domain/entities/message.dart';
+
 class YesNoModel {
   String answer;
   bool forced;
@@ -14,4 +16,13 @@ class YesNoModel {
         forced: json["forced"],
         image: json["image"],
       );
+
+  Map<String, dynamic> toJson() => {
+        "answer": answer == 'yes' ? "si" : "no",
+        "forced": forced,
+        "image": image,
+      };
+
+  Message toEntityMessage() =>
+      Message(text: answer, imageUrl: image, fromWho: FromWho.hers);
 }
